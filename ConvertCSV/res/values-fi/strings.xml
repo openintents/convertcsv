@@ -22,7 +22,7 @@
 	
 	<!-- Automatically filled in by Launchpad: -->
  	<string name="about_translators">Launchpad Contributions:
-  Cédric VALMARY (Tot en òc) https://launchpad.net/~cvalmary</string>
+  Winner Winner https://launchpad.net/~winnerwinner57</string>
 	
 	<!-- Explanation what this application does. -->
 	<string name="about_comments">This extension to OI Shopping list and OI Notepad lets you import and export lists and notes in the CSV file format.</string>
@@ -51,15 +51,15 @@
     <string name="convert_all_notes">Convert all notes</string>
     <string name="convert_all_shoppinglists">Convert all shopping lists</string>
     <string name="convert_list">Convert list \'%s\'</string>
-    <string name="file_path">Camin del fichiér</string>
-    <string name="file_import">Importar</string>
-    <string name="file_export">Exportar</string>
+    <string name="file_path">File path</string>
+    <string name="file_import">Import</string>
+    <string name="file_export">Export</string>
     <string name="error_writing_file">Error writing to file</string>
     <string name="error_reading_file">Error reading from file</string>
     <string name="wrong_csv_format">Wrong CSV format</string>
-    <string name="error_file_not_found">Impossible de trobar lo fichièr</string>
+    <string name="error_file_not_found">File not found</string>
     <string name="error_not_yet_implemented">Not yet implemented, please choose different option.</string>
-    <string name="import_finished">Importacion acabada</string>
+    <string name="import_finished">Import finished</string>
     <string name="export_finished">Export finished</string>
     <string name="filemanager_title_notepad">Select notepad CSV file</string>
     <string name="filemanager_title_shoppinglist">Select shopping list CSV file</string>
@@ -73,11 +73,11 @@
     <string name="warn_restore_policy_title">Import policy set to RESTORE</string>
     <string name="warn_restore_policy">Your current import policy is set to DELETE ALL CURRENT RECORDS and REPLACE them with the contents of the CSV file. Are you sure?</string>
     
-    <string name="menu_settings">Paramètres</string>
+    <string name="menu_settings">Settings</string>
     <string name="csv_file_format">CSV file format</string>
     <string name="select_csv_file_format">Select CSV file format</string>
     <string name="select_encoding">Select encoding</string>
-    <string name="default_encoding">Valor per defaut</string>
+    <string name="default_encoding">Default</string>
     <string name="use_custom_encoding">Use custom encoding (advanced users)</string>
     <string name="preferences_select_csv_file_format">Select a CSV file format</string>
     <string name="preferences_select_import_policy">Select the import policy to use</string>
@@ -90,17 +90,17 @@
     <string name="preference_ask_if_file_exists_summary">If checked a dialog appears to confirm overwriting if the export file already exists.</string>
     
     <string name="preference_application_specific">Application specific settings</string>
-    <string name="preference_filename">Nom del fichièr</string>
+    <string name="preference_filename">Filename</string>
     <string name="preference_filename_summary">Full path for file.</string>
     
     <string name="preference_notepad">OI Notepad</string>
     <string name="preference_notepad_summary">Import/export settings for OI Notepad.</string>
     
-    <string name="preference_shoppinglist">OI Shopping list</string>
+    <string name="preference_shoppinglist">OI Ostoslista</string>
     <string name="preference_shoppinglist_summary">Import/export settings for OI Shopping list.</string>
     
-	<string name="converting">Conversion...</string>
-	<string name="dialog_ok">D\'acòrdi</string>
+	<string name="converting">Converting...</string>
+	<string name="dialog_ok">Ok</string>
 	<string name="preference_stores">Import stores</string>
 	<string name="preference_stores_off_summary">Import HandyShopper store names only as item tags.</string>
 	<string name="preference_stores_on_summary">Import HandyShopper stores and per-store price and aisle information.</string>
@@ -110,16 +110,16 @@
     <string name="oi_notepad_permission_read">read notes</string>
     <string name="oi_notepad_permission_read_descr">Allows an application to read notes. Note that encrypted notes are provided in the encrypted format.</string>
 	<!-- Permission -->
-    <string name="oi_notepad_permission_write">escriure de nòtas</string>
-    <string name="oi_notepad_permission_write_descr">Permet a una aplicacion de crear de nòtas novèlas o de modificar las nòtas.</string>
+    <string name="oi_notepad_permission_write">write notes</string>
+    <string name="oi_notepad_permission_write_descr">Allows an application to create new notes or modify existing notes.</string>
     
 	<!-- OI Shopping list -->
 	<!-- Permission -->
-    <string name="oi_shopping_permission_read">Legir las listas de crompas</string>
+    <string name="oi_shopping_permission_read">read shopping lists</string>
     <string name="oi_shopping_permission_read_descr">Allows an application to read shopping lists. Note that encrypted lists and items are provided in the encrypted format.</string>
 	<!-- Permission -->
-    <string name="oi_shopping_permission_write">Escriure las listas de crompas</string>
-    <string name="oi_shopping_permission_write_descr">Permet a una aplicacion de crear de listas novèlas e d\'articles o modificar los qu\'existisson.</string>
+    <string name="oi_shopping_permission_write">write shopping lists</string>
+    <string name="oi_shopping_permission_write_descr">Allows an application to create new lists and items or modify existing ones.</string>
     	
     <string-array name="notepad_format">
         <item>MS Outlook Notes</item>
