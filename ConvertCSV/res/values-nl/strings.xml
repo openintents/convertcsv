@@ -22,6 +22,7 @@
 	
 	<!-- Automatically filled in by Launchpad: -->
  	<string name="about_translators">Launchpad Contributions:
+  Maarten de Vries https://launchpad.net/~maarten-k-de-vries
   Mark van Kuijk https://launchpad.net/~markvankuyk
   Menno Vogel https://launchpad.net/~mennovogel90
   OpenIntents devs https://launchpad.net/~openintents-devs
@@ -105,8 +106,8 @@
 	<string name="converting">Bezig met converteren...</string>
 	<string name="dialog_ok">Ok</string>
 	<string name="preference_stores">Importeer winkels</string>
-	<string name="preference_stores_off_summary">Import HandyShopper store names only as item tags.</string>
-	<string name="preference_stores_on_summary">Import HandyShopper stores and per-store price and aisle information.</string>
+	<string name="preference_stores_off_summary">HandyShopper-namen alleen importeren als tag</string>
+	<string name="preference_stores_on_summary">HandyShopper-winkels, prijzen per winkel en padinformatie importeren</string>
 
 	<!-- OI Notepad -->
 	<!-- Permission -->
@@ -137,26 +138,26 @@
     
     <string-array name="import_policy">
         <item>DUPLICEREN - sta duplicaties van gegevens toe.</item>
-        <item>KEEP - Don\'t overwrite existing records.</item>
+        <item>BEWAREN - Bestaande gegevens niet overschrijven</item>
         <item>Overschrijf - Overschrijf bestaande gegevens.</item>
         <item>Herstellen - VERWIJDER ALLES, dan importeren.</item>
     </string-array>
 
     <string-array name="import_policy_detail">
         <item>DUPLICEREN - Voeg een tweede kopie toe van een document als het al bestaat.</item>
-        <item>KEEP - Don\'t overwrite an existing record, ignore the one in the CSV file.</item>
+        <item>BEWAREN - Bestaande gegevens niet overschrijven, negeer de waarden in het CSV-bestand</item>
         <item>Overschrijven - Een gegeven in het CSV bestand zal een bestaand gegeven OVERSCHRIJVEN.</item>
         <item>Herstel reservekopie - VERWIJDER AL UW BESTAANDE GEGEVENS, importeer dan het CSV bestand.</item>
     </string-array>
     
     <string-array name="shoppinglist_import_policy">
         <item>DUPLICEREN - sta duplicaties van gegevens toe.</item>
-        <item>KEEP - Don\'t overwrite existing records.</item>
+        <item>BEWAREN - Bestaande gegevens niet overschrijven</item>
     </string-array>
 
     <string-array name="shoppinglist_import_policy_detail">
         <item>DUPLICEREN - Voeg een tweede kopie toe van een document als het al bestaat.</item>
-        <item>KEEP - Don\'t overwrite an existing record, ignore the one in the CSV file.</item>
+        <item>BEWAREN - Bestaande gegevens niet overschrijven, negeer de waarden in het CSV-bestand</item>
     </string-array>
     
 </resources>

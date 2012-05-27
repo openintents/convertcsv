@@ -23,10 +23,11 @@
 	<!-- Automatically filled in by Launchpad: -->
  	<string name="about_translators">Launchpad Contributions:
   John Andre https://launchpad.net/~john-andre
-  OpenIntents devs https://launchpad.net/~openintents-devs</string>
+  OpenIntents devs https://launchpad.net/~openintents-devs
+  Tanguy Herrmann https://launchpad.net/~dolanor</string>
 	
 	<!-- Short explanation of the application (max. 80 characters) -->
-	<string name="about_comments">Import and export lists and notes with OI Convert CSV.</string>
+	<string name="about_comments">Importer et exporter des listes et des notes avec OI Convert CSV.</string>
 	
 	<!-- ***************************
 	     Distribution
@@ -135,26 +136,26 @@
     
     <string-array name="import_policy">
         <item>DUPLICATE - Autoriser les doublons d\'enregistrements.</item>
-        <item>KEEP - Don\'t overwrite existing records.</item>
+        <item>GARDER - ne pas supprimer les enregistrements existants.</item>
         <item>Ecraser - Ecraser les enregistrements existants.</item>
         <item>Restaurer - Supprimer tout, puis les importer.</item>
     </string-array>
 
     <string-array name="import_policy_detail">
         <item>DUPLICATE - Ajouter une deuxième copie d\'un enregistrement si elle existe déjà.</item>
-        <item>KEEP - Don\'t overwrite an existing record, ignore the one in the CSV file.</item>
+        <item>GARDER - ne pas supprimer un enregistrement existant, ignorer celui dans le fichiers CSV.</item>
         <item>Ecraser - Un record dans le CSV va écraser un enregistrement existant.</item>
         <item>Restaurer la sauvegarde - supprimer tous vos enregistrements existants, puis importer le fichier CSV.</item>
     </string-array>
     
     <string-array name="shoppinglist_import_policy">
         <item>DUPLICATE - Autoriser les doublons d\'enregistrements.</item>
-        <item>KEEP - Don\'t overwrite existing records.</item>
+        <item>GARDER - ne pas supprimer les enregistrements existants.</item>
     </string-array>
 
     <string-array name="shoppinglist_import_policy_detail">
         <item>DUPLICATE - Ajouter une deuxième copie d\'un enregistrement si elle existe déjà.</item>
-        <item>KEEP - Don\'t overwrite an existing record, ignore the one in the CSV file.</item>
+        <item>GARDER - ne pas supprimer un enregistrement existant, ignorer celui dans le fichiers CSV.</item>
     </string-array>
     
 </resources>
