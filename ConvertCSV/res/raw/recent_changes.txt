@@ -1,4 +1,13 @@
----------------------------------------------------------
+----------------
+release: 1.2.0
+date: 2012-06-05
+
+- Add support for JPilot import and export (Issue 252 Google Code-In task by Michał Zieliński).
+- Improve HandyShopper store prices import (performance, rounding)
+- Better support for Hebrew 
+- Support for file path with spaces
+
+----------------
 release: 1.1.0
 date: 2011-05-28
 
@@ -11,7 +20,7 @@ NOTE: Use the new HandyShopper format to export tags, price, and quantity from O
 - Choose custom encoding.
 - support Android 2.3.
 
----------------------------------------------------------
+----------------
 release: 1.0.1
 date: 2009-01-19
 
@@ -19,7 +28,7 @@ date: 2009-01-19
 - Add support for new fields in NotePad 1.1.0.
 - Prepare for OI Notepad and OI Shopping list permissions.
 
----------------------------------------------------------
+----------------
 For the complete list of changes and a list of frequently asked questions, please visit:
 http://www.openintents.org
 
