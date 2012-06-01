@@ -42,7 +42,9 @@
 	    	android:text="@string/default_filename"
 		    android:layout_width="0dip" 
 		    android:layout_height="wrap_content" 
-		    android:layout_weight="1"/>
+		    android:layout_weight="1"
+		    android:inputType="text"
+		/>
 		<ImageButton android:id="@+id/file_manager"
 			android:src="@drawable/ic_launcher_folder_small"
 	        android:layout_width="wrap_content"

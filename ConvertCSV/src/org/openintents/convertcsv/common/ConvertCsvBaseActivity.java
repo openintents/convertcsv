@@ -24,7 +24,9 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.io.Reader;
+import java.io.UnsupportedEncodingException;
 import java.io.Writer;
+import java.net.URLDecoder;
 
 import org.openintents.convertcsv.PreferenceActivity;
 import org.openintents.convertcsv.R;
@@ -760,6 +762,13 @@ public class ConvertCsvBaseActivity extends DistributionLibraryActivity {
 			if (resultCode == RESULT_OK && data != null) {
 				// obtain the filename
 				String filename = data.getDataString();
+				// remove url encoding from filename
+				try {
+					filename = URLDecoder.decode(filename, "UTF-8");
+				} catch (UnsupportedEncodingException e) {					
+					e.printStackTrace();
+				}
+				
 				if (filename != null) {
 					if (filename.startsWith("file://")) {
 						filename = filename.substring(7);

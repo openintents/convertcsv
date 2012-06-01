@@ -21,10 +21,13 @@ To obtain the current release, visit
   http://www.openintents.org
 
 ----------------
-release: 1.??
-date: ??
+release: 1.2.0
+date: 2012-06-05
 
 - Add support for JPilot import and export (Issue 252 Google Code-In task by Michał Zieliński).
+- Improve HandyShopper store prices import (performance, rounding)
+- Better support for Hebrew 
+- Support for file path with spaces
 
 ----------------
 release: 1.1.0
