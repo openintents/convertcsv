@@ -129,7 +129,7 @@ public class ImportCsv {
 	    	// Do we need to overwrite or ignore this?
 	    	if (needToValidate) {
 	    		// We need to identify it by title.
-	    		String title = NotepadUtils.extractTitle(note);
+	    		String title = NotepadUtils.extractTitle(note, encrypted);
 		    	int existingNoteId = NotepadUtils.findNoteByTitle(mContext, title);
 		    	
 		    	if (existingNoteId != -1) {
