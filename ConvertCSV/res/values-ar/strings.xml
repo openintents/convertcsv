@@ -102,7 +102,7 @@
     <string name="preference_shoppinglist_summary">استيراد/تصدير إعدادات ل OI قائمة التسوق.</string>
     
 	<string name="converting">تحويل...</string>
-	<string name="dialog_ok">موافق</string>
+	<string name="dialog_ok">OK</string>
 	<string name="preference_stores">مخازن الاستيراد</string>
 	<string name="preference_stores_off_summary">استيراد أسماء مخزن HandyShopper فقط كالعلامات البند.</string>
 	<string name="preference_stores_on_summary">استيراد مخازن HandyShopper وفي مخزن معلومات الأسعار والممر.</string>

@@ -101,7 +101,7 @@
     <string name="preference_shoppinglist_summary">הגדרות ייבוא/ייצוא לרשימת קניות OI</string>
     
 	<string name="converting">ממיר...</string>
-	<string name="dialog_ok">אישור</string>
+	<string name="dialog_ok">OK</string>
 	<string name="preference_stores">ייבא חנויות</string>
 	<string name="preference_stores_off_summary">יבא שמות חנות HandyShopper רק כתגיות פריט</string>
 	<string name="preference_stores_on_summary">ייבוא חנויות HandyShopper  ומחיר לפני חנות ומידע מעבר.</string>

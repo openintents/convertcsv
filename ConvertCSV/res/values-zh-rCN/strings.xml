@@ -101,7 +101,7 @@
     <string name="preference_shoppinglist_summary">OI购物清单导入/导出设置。</string>
     
 	<string name="converting">正在转换...</string>
-	<string name="dialog_ok">确定</string>
+	<string name="dialog_ok">OK</string>
 	<string name="preference_stores">导入商店</string>
 	<string name="preference_stores_off_summary">导入HandyShopper名字存为标签。</string>
 	<string name="preference_stores_on_summary">导入HandyShopper，每一家店的价格，和渠道信息。</string>

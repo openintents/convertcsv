@@ -101,7 +101,7 @@
     <string name="preference_shoppinglist_summary">Uvoz/izvoz podešavanja za OI Listu za kupovinu</string>
     
 	<string name="converting">Konvertiranje....</string>
-	<string name="dialog_ok">Ok</string>
+	<string name="dialog_ok">OK</string>
 	<string name="preference_stores">Uvezi prodavnice</string>
 	<string name="preference_stores_off_summary">Izvezi HandyShopper imena prodavnica samo kao tagovi predmjeta.</string>
 	<string name="preference_stores_on_summary">Uvezi HandyShopper prodavnice i cene i informacije po prodavnici.</string>

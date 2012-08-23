@@ -101,7 +101,7 @@
     <string name="preference_shoppinglist_summary">Importer/eksporter innstillinger fra OI Handleliste.</string>
     
 	<string name="converting">Konverterer...</string>
-	<string name="dialog_ok">Ok</string>
+	<string name="dialog_ok">OK</string>
 	<string name="preference_stores">Importer butikker</string>
 	<string name="preference_stores_off_summary">Importer HandyShopper butikknavn bare som elementmerker.</string>
 	<string name="preference_stores_on_summary">Importer HandyShopper-butikker, priser per butikk og hylleradinformasjon.</string>

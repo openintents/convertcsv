@@ -103,7 +103,7 @@
     <string name="preference_shoppinglist_summary">Configurări import/export pentru Lista de cumpărături OI.</string>
     
 	<string name="converting">Se convertește...</string>
-	<string name="dialog_ok">Ok</string>
+	<string name="dialog_ok">OK</string>
 	<string name="preference_stores">Importă magazine</string>
 	<string name="preference_stores_off_summary">Importă numele de magazine HandyShopper doar ca etichete de articol.</string>
 	<string name="preference_stores_on_summary">Importă magazinele HandyShopper, prețul per-magazin și informațiile adăugate.</string>

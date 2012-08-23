@@ -101,7 +101,7 @@
     <string name="preference_shoppinglist_summary">ورود/صادرات به ايران برای خريد فهرستOI ميخواندند.</string>
     
 	<string name="converting">فونت فارسی...</string>
-	<string name="dialog_ok">تصويب‌ كردن‌</string>
+	<string name="dialog_ok">OK</string>
 	<string name="preference_stores">انبارهاي غلة وارداتي</string>
 	<string name="preference_stores_off_summary">انبار غلة وارداتي دستیکاسب خرده فروش نام تنها به عنوان کلان ميآويخت.</string>
 	<string name="preference_stores_on_summary">دستیکاسب خرده فروش واردات و مغازه ها در مغازه راهه قيمت و اطلاعات است.</string>

@@ -101,7 +101,7 @@
     <string name="preference_shoppinglist_summary">Ρυθμίσεις εισαγωγής/εξαγωγής για την OI Λίστα Αγορών</string>
     
 	<string name="converting">Γίνεται μετατροπή...</string>
-	<string name="dialog_ok">Εντάξει</string>
+	<string name="dialog_ok">OK</string>
 	<string name="preference_stores">Εισαγωγή καταστημάτων</string>
 	<string name="preference_stores_off_summary">Η εισαγωγή HandyShopper αποθηκεύει ονόματα μόνο ως ετικέτες αντικειμένων.</string>
 	<string name="preference_stores_on_summary">Η εισαγωγή HandyShopper αποθηκεύει και τις τιμές ανα κατάστημα και της πληροφορίες των διαδρόμων.</string>

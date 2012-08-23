@@ -104,7 +104,7 @@
     <string name="preference_shoppinglist_summary">Import/eksport ustawień dla OI Listy zakupów</string>
     
 	<string name="converting">Konwertowanie...</string>
-	<string name="dialog_ok">Ok</string>
+	<string name="dialog_ok">OK</string>
 	<string name="preference_stores">Import schowków</string>
 	<string name="preference_stores_off_summary">Import nazw schowków HandyShopper tylko jako znaczników pozycji.</string>
 	<string name="preference_stores_on_summary">Import schowków HandyShopper i ceny oraz informacji przejściowych powstałych przed przechowaniem.</string>

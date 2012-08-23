@@ -102,7 +102,7 @@
     <string name="preference_shoppinglist_summary">OI खरीदारी सूची के लिए सेटिंग्स आयात/निर्यात करें|</string>
     
 	<string name="converting">परिवर्तन हो रहा है...</string>
-	<string name="dialog_ok">ठीक है</string>
+	<string name="dialog_ok">OK</string>
 	<string name="preference_stores">स्टोर आयात करें</string>
 	<string name="preference_stores_off_summary">आइटम टैग के रूप में ही HandyShopper के स्टोर नाम आयात करें</string>
 	<string name="preference_stores_on_summary">HandyShopper स्टोर और प्रति स्टोर के मूल्य और गलियारे की जानकारी आयत करें|</string>

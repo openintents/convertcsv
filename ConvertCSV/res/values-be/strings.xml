@@ -101,7 +101,7 @@
     <string name="preference_shoppinglist_summary">Імпартаваць/экспартаваць настройкі для OI Shopping list.</string>
     
 	<string name="converting">Канвертуецца...</string>
-	<string name="dialog_ok">Ok</string>
+	<string name="dialog_ok">OK</string>
 	<string name="preference_stores">Імпарт магазінаў</string>
 	<string name="preference_stores_off_summary">Імпартаваць назвы магазінаў HandyShopper толькі як цэннікі.</string>
 	<string name="preference_stores_on_summary">Імпартаваць магазіны HandyShopper і інфармацыю аб іх.</string>

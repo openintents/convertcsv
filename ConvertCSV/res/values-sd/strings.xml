@@ -102,7 +102,7 @@
     <string name="preference_shoppinglist_summary">OI खरीदारी सूची  जे लाये सेटिंग्स आयात/निर्यात कयो</string>
     
 	<string name="converting">परिवर्तन थे तो...</string>
-	<string name="dialog_ok">ठीक आ</string>
+	<string name="dialog_ok">OK</string>
 	<string name="preference_stores">स्टोर आयात कयो</string>
 	<string name="preference_stores_off_summary">आइटम टैग जे रूप में ही HandyShopper जो स्टोर नाम आयात कयो</string>
 	<string name="preference_stores_on_summary">HandyShopper स्टोर अऊँ प्रति स्टोर जे मूल्य अऊँ गलियारे जी जानकारी आयत कयो</string>

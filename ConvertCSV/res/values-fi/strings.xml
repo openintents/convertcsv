@@ -102,7 +102,7 @@ ja VAIHDA kanssa sisällön CSV-tiedoston. Oletko varma?</string>
     <string name="preference_shoppinglist_summary">Tuonti/vienti asetusten varten OI Ostoslista</string>
     
 	<string name="converting">Konvertoivan ...</string>
-	<string name="dialog_ok">Ok</string>
+	<string name="dialog_ok">OK</string>
 	<string name="preference_stores">Tuonti myymälöissä</string>
 	<string name="preference_stores_off_summary">Tuonti HandyShopper tallentaa nimiä vain kuten tuote tageja.</string>
 	<string name="preference_stores_on_summary">Tuonti HandyShopper tallentaa ja per-myymälä hinta ja aisle tiedot.</string>

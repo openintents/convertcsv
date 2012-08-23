@@ -103,7 +103,7 @@
     <string name="preference_shoppinglist_summary">Import/Export Einstellungen für OI Einkaufsliste.</string>
     
 	<string name="converting">Konvertiere...</string>
-	<string name="dialog_ok">Ok</string>
+	<string name="dialog_ok">OK</string>
 	<string name="preference_stores">Importiere Geschäfte</string>
 	<string name="preference_stores_off_summary">Importiere HandyShopper Geschäfte nur als Tags</string>
 	<string name="preference_stores_on_summary">Importiere HandyShopper-Geschäfte und Informationen über Preise und Standort</string>

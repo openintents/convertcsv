@@ -101,7 +101,7 @@
     <string name="preference_shoppinglist_summary">Preferències d\'importació/exportació per la llista de compra d\'OI.</string>
     
 	<string name="converting">S\'està convertint...</string>
-	<string name="dialog_ok">D\'acord</string>
+	<string name="dialog_ok">OK</string>
 	<string name="preference_stores">Importar botigues</string>
 	<string name="preference_stores_off_summary">Importar els noms de botigues HandyShopper només com a etiquetes d\'element</string>
 	<string name="preference_stores_on_summary">Importar botigues HandyShopper i informació per botiga i passadís.</string>

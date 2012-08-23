@@ -101,7 +101,7 @@
     <string name="preference_shoppinglist_summary">Mga Import/export setting para sa OI Listahan ng bilihin.</string>
     
 	<string name="converting">Pinapalitan...</string>
-	<string name="dialog_ok">Ok</string>
+	<string name="dialog_ok">OK</string>
 	<string name="preference_stores">Import ang mga tindahan</string>
 	<string name="preference_stores_off_summary">I-import lamang ang pangalan ng HandyShopper tindahan  na item tags.</string>
 	<string name="preference_stores_on_summary">I-import ang HandyShopper tindahan at presyo at impormasyon ng pasilyo bawat tindahan.</string>

@@ -101,7 +101,7 @@
     <string name="preference_shoppinglist_summary">OI 쇼핑 목록 불러오기/내보내기 설정</string>
     
 	<string name="converting">변환 중...</string>
-	<string name="dialog_ok">확인</string>
+	<string name="dialog_ok">OK</string>
 	<string name="preference_stores">가게 불러오기</string>
 	<string name="preference_stores_off_summary">항목 태그로만 HandyShopper 가게 이름 불러오기.</string>
 	<string name="preference_stores_on_summary">HandyShopper 가게 이름, 가게별 가격, 코너 정보 불러오기.</string>
