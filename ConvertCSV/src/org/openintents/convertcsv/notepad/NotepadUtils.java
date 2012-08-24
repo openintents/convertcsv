@@ -48,7 +48,7 @@ public class NotepadUtils {
 		// Add item to list:
 		ContentValues values = new ContentValues(1);
 		values.put(NotePad.Notes.NOTE, note);
-		String title = extractTitle(note);
+		String title = extractTitle(note, encrypted);
 		values.put(NotePad.Notes.TITLE, title);
 		
 		if (COLUMN_INDEX_ENCRYPTED > -1) {
@@ -69,9 +69,9 @@ public class NotepadUtils {
 		}
 	}
 	
-	public static String extractTitle(String note) {
+	public static String extractTitle(String note, long encrypted) {
         int length = note.length();
-		String title = note.substring(0, Math.min(30, length));
+		String title = (encrypted > 0)? note : note.substring(0, Math.min(30, length));
         // Break at newline:
         int firstNewline = title.indexOf('\n');
         if (firstNewline > 0) {
