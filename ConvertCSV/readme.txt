@@ -20,6 +20,13 @@ that lets you import and export the lists to CSV files.
 To obtain the current release, visit
   http://www.openintents.org
 
+
+----------------
+release: 1.3
+date: ?
+
+- Fix title bug for encrypted notes (Issue 301, patch by chaitanya)
+
 ----------------
 release: 1.2.0
 date: 2012-06-05
