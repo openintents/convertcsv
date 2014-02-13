@@ -23,10 +23,11 @@
 	<!-- Automatically filled in by Launchpad: -->
  	<string name="about_translators">Launchpad Contributions:
   OpenIntents devs https://launchpad.net/~openintents-devs
-  Winner Winner https://launchpad.net/~winnerwinner57</string>
+  Winner Winner https://launchpad.net/~winnerwinner57
+  emp https://launchpad.net/~emp500</string>
 	
 	<!-- Short explanation of the application (max. 80 characters) -->
-	<string name="about_comments">Tuonti ja vienti luettelot ja toteaa kanssa OI Muunna CSV.</string>
+	<string name="about_comments">Tuo ja vie luetteloita ja muistiinpanoja OI Muunna CSV:llä.</string>
 	
 	<!-- ***************************
 	     Distribution
@@ -37,7 +38,7 @@
 	<string name="info_app_notepad">OI Muistio</string>
 	
 	<!-- %s is the name of an application (e.g. "Launch OI Notepad and select menu > About.") -->
-	<string name="info_instructions">Käynnistä %s ja valita valikko &gt; Muunna CSV.</string>
+	<string name="info_instructions">Käynnistä %s ja valitse valikko &gt; Muunna CSV.</string>
 	
 	<!-- ***************************
 	     Applicatio-specific strings
@@ -50,7 +51,7 @@
     <string name="convert_csv_notepad">Muunna CSV Muistioon</string>
     <string name="convert_csv_shoppinglist">Muunna CSV Ostoslistaan</string>
     <string name="convert_all_notes">Muunna kaikki muistiinpanot</string>
-    <string name="convert_all_shoppinglists">Muunna kaikki ostoslistoja</string>
+    <string name="convert_all_shoppinglists">Muunna kaikki ostoslistat</string>
     <string name="convert_list">Muunna lista \'%s\'</string>
     <string name="file_path">Tiedostopolku</string>
     <string name="file_import">Tuonti</string>

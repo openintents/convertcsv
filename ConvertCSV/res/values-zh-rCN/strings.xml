@@ -23,10 +23,11 @@
 	<!-- Automatically filled in by Launchpad: -->
  	<string name="about_translators">Launchpad Contributions:
   OpenIntents devs https://launchpad.net/~openintents-devs
+  gaoyunpeng https://launchpad.net/~gaoyunpeng1982
   zhangchun https://launchpad.net/~zhangchun</string>
 	
 	<!-- Short explanation of the application (max. 80 characters) -->
-	<string name="about_comments">Import and export lists and notes with OI Convert CSV.</string>
+	<string name="about_comments">使用 OI 转换 CSV 导入导出列表和笔记。</string>
 	
 	<!-- ***************************
 	     Distribution
@@ -101,7 +102,7 @@
     <string name="preference_shoppinglist_summary">OI购物清单导入/导出设置。</string>
     
 	<string name="converting">正在转换...</string>
-	<string name="dialog_ok">OK</string>
+	<string name="dialog_ok">確定</string>
 	<string name="preference_stores">导入商店</string>
 	<string name="preference_stores_off_summary">导入HandyShopper名字存为标签。</string>
 	<string name="preference_stores_on_summary">导入HandyShopper，每一家店的价格，和渠道信息。</string>
@@ -125,7 +126,7 @@
     <string-array name="notepad_format">
         <item>MS Outlook便签</item>
         <item>掌上CSV</item>
-        <item>JPilot Memo</item>
+        <item>J-Pilot 备忘录</item>
     </string-array>
     
     <string-array name="shoppinglist_format">
@@ -135,26 +136,26 @@
     
     <string-array name="import_policy">
         <item>复制 - 允许重复记录。</item>
-        <item>KEEP - Don\'t overwrite existing records.</item>
+        <item>保持 - 不要覆盖现有记录。</item>
         <item>覆盖 - 覆盖现有记录。</item>
         <item>还原 - 全部删除，然后导入。</item>
     </string-array>
 
     <string-array name="import_policy_detail">
-        <item>复制- 添加一个纪录两个副本，如果它已经存在。</item>
-        <item>KEEP - Don\'t overwrite an existing record, ignore the one in the CSV file.</item>
+        <item>副本 - 如果一条记录已经存在，则添加一条它的副本。</item>
+        <item>保持 - 不要覆盖现有记录，忽略CSV文件中的记录。</item>
         <item>覆盖 - 用CSV的记录将覆盖现有的记录。</item>
         <item>恢复备份 - 删除所有现有的记录，然后导入CSV文件。</item>
     </string-array>
     
     <string-array name="shoppinglist_import_policy">
         <item>复制 - 允许重复记录。</item>
-        <item>KEEP - Don\'t overwrite existing records.</item>
+        <item>保持 - 不要覆盖现有记录。</item>
     </string-array>
 
     <string-array name="shoppinglist_import_policy_detail">
-        <item>复制- 添加一个纪录两个副本，如果它已经存在。</item>
-        <item>KEEP - Don\'t overwrite an existing record, ignore the one in the CSV file.</item>
+        <item>副本 - 如果一条记录已经存在，则添加一条它的副本。</item>
+        <item>保持 - 不要覆盖现有记录，忽略CSV文件中的记录。</item>
     </string-array>
     
 </resources>

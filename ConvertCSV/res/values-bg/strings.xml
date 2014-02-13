@@ -24,6 +24,7 @@
  	<string name="about_translators">Launchpad Contributions:
   Anton Dudov https://launchpad.net/~anton-cho
   Dariel Kremov https://launchpad.net/~dkremov
+  Ivaylo Malinov https://launchpad.net/~iv-malinov
   OpenIntents devs https://launchpad.net/~openintents-devs
   Stefani Soyanova https://launchpad.net/~stefi-stoyanova95</string>
 	
@@ -103,9 +104,9 @@
     <string name="preference_shoppinglist_summary">Вмъкни/извлечи настройки за OI списък за пазаруване.</string>
     
 	<string name="converting">Конвертиране...</string>
-	<string name="dialog_ok">OK</string>
+	<string name="dialog_ok">Да</string>
 	<string name="preference_stores">Вмъкни магазини</string>
-	<string name="preference_stores_off_summary">Вмъкнете имена на HandyShopper магазини само като тагове на артикули.</string>
+	<string name="preference_stores_off_summary">Импортиране на имена от етикети на магазин HandyShopper.</string>
 	<string name="preference_stores_on_summary">Вмъкнете HandyShopper магазини и магазина цена и информационна пътека.</string>
 
 	<!-- OI Notepad -->

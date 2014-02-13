@@ -101,7 +101,7 @@
     <string name="preference_shoppinglist_summary">Definições de importação e exportação do OI Shopping list.</string>
     
 	<string name="converting">A converter...</string>
-	<string name="dialog_ok">OK</string>
+	<string name="dialog_ok">Aceitar</string>
 	<string name="preference_stores">Importar lojas</string>
 	<string name="preference_stores_off_summary">Importar nome das lojas HandyShopper como "tags".</string>
 	<string name="preference_stores_on_summary">Importar lojas HandyShopper com informações e preço por loja.</string>

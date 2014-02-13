@@ -101,7 +101,7 @@
     <string name="preference_shoppinglist_summary">OI سېتىۋېلىش تىزىمى ئەكىر/چىقار تەڭشەكلىرى</string>
     
 	<string name="converting">ئايلاندۇرۇۋاتىدۇ……</string>
-	<string name="dialog_ok">OK</string>
+	<string name="dialog_ok">جەزملە</string>
 	<string name="preference_stores">دۇكاننى ئەكىر</string>
 	<string name="preference_stores_off_summary">HandyShopper  ئاتىنى بەلگە سۈپىتىدە ئەكىر</string>
 	<string name="preference_stores_on_summary">HandyShopper دۇكىنى ۋە ھەر بىر دۇكاننىڭ باھا ۋە مال مەنبە ئۇچۇرىنى ئەكىرىدۇ.</string>

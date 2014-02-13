@@ -23,6 +23,7 @@
 	<!-- Automatically filled in by Launchpad: -->
  	<string name="about_translators">Launchpad Contributions:
   Adolfo Jayme Barrientos https://launchpad.net/~fitoschido
+  Costeelation https://launchpad.net/~costeelation
   Martín González https://launchpad.net/~mgonzlezgmz
   OpenIntents devs https://launchpad.net/~openintents-devs
   Walter Reindeer Martinez H https://launchpad.net/~waltereindeerm
@@ -105,7 +106,7 @@
     <string name="preference_shoppinglist_summary">Import/export settings for OI Shopping list.</string>
     
 	<string name="converting">Convirtiendo…</string>
-	<string name="dialog_ok">OK</string>
+	<string name="dialog_ok">Aceptar</string>
 	<string name="preference_stores">Importar tiendas</string>
 	<string name="preference_stores_off_summary">Importar nombres de tiendas de HandyShopper solo como etiquetas.</string>
 	<string name="preference_stores_on_summary">Importar tiendas de HandyShopper y precios por-tienda y ordenar la información</string>

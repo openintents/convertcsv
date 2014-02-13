@@ -24,7 +24,8 @@
  	<string name="about_translators">Launchpad Contributions:
   Lacko545 https://launchpad.net/~lackorauch
   Marek Matejka https://launchpad.net/~marek-matejka
-  OpenIntents devs https://launchpad.net/~openintents-devs</string>
+  OpenIntents devs https://launchpad.net/~openintents-devs
+  Stefan Bocko https://launchpad.net/~st-bocko</string>
 	
 	<!-- Short explanation of the application (max. 80 characters) -->
 	<string name="about_comments">Importujte a exportujte zoznamy a poznámky s OI Konvertovať CSV.</string>
@@ -102,7 +103,7 @@
     <string name="preference_shoppinglist_summary">Importovať/exportovať nastavenia pre OI Nákupný Zoznam.</string>
     
 	<string name="converting">Konvertuje sa...</string>
-	<string name="dialog_ok">OK</string>
+	<string name="dialog_ok">Ok</string>
 	<string name="preference_stores">Importovať obchody</string>
 	<string name="preference_stores_off_summary">Importovať iba HandyShopper názvy obchodov ako štítky položiek</string>
 	<string name="preference_stores_on_summary">Importovať HandyShopper obchody, ceny pre každý obchod a informácie o uličkách.</string>
