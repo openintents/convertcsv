@@ -16,6 +16,17 @@
 
 package org.openintents.convertcsv.shoppinglist;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.database.Cursor;
+import android.net.Uri;
+import android.os.Bundle;
+import android.preference.PreferenceManager;
+import android.util.Xml.Encoding;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemSelectedListener;
+
 import java.io.IOException;
 import java.io.Reader;
 import java.io.Writer;
@@ -26,17 +37,6 @@ import org.openintents.convertcsv.common.ConvertCsvBaseActivity;
 import org.openintents.convertcsv.common.WrongFormatException;
 import org.openintents.shopping.library.provider.ShoppingContract;
 import org.openintents.shopping.library.util.ShoppingUtils;
-
-import android.content.SharedPreferences;
-import android.database.Cursor;
-import android.net.Uri;
-import android.os.Bundle;
-import android.preference.PreferenceManager;
-import android.util.Xml.Encoding;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.Toast;
-import android.widget.AdapterView.OnItemSelectedListener;
 
 public class ConvertCsvActivity extends ConvertCsvBaseActivity {
 
@@ -116,7 +116,15 @@ public class ConvertCsvActivity extends ConvertCsvBaseActivity {
 		}
 	}
 
-	@Override
+    @Override
+    public void onImportFinished() {
+        Intent i = new Intent(Intent.ACTION_VIEW);
+        Uri uri = ShoppingContract.Lists.CONTENT_URI.buildUpon().appendPath(String.valueOf(getCurrentListId())).build();
+        i.setData(uri);
+        startActivity(i);
+    }
+
+    @Override
 	protected Encoding getDefaultEncoding() {
 		long id = mSpinner.getSelectedItemId();
 		if (0 == id) {

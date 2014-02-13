@@ -431,6 +431,7 @@ public class ConvertCsvBaseActivity extends DistributionLibraryActivity {
 						
 						reader.close();
 						dispatchSuccess(R.string.import_finished);
+                        onImportFinished();
 //						finish();
 						
 					} catch (FileNotFoundException e) {
@@ -520,6 +521,10 @@ public class ConvertCsvBaseActivity extends DistributionLibraryActivity {
 				WrongFormatException {
 	
 	}
+
+    public void onImportFinished(){
+
+    }
 	
     public void startExport() {
 

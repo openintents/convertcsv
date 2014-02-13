@@ -30,6 +30,7 @@
 			android:resource="@xml/about" />
         
         <activity android:name=".shoppinglist.ConvertCsvActivity"
+                  android:exported="true"
                   android:label="@string/app_name">
                   <!-- 
             <intent-filter>
@@ -47,9 +48,11 @@
                 <action android:name="android.intent.action.VIEW"/>                        
                 <category android:name="android.intent.category.DEFAULT" />
                 <data android:mimeType="text/csv" />
+                <data android:mimeType="text/comma-separated-values" />
             </intent-filter>
         </activity>
         <activity android:name=".notepad.ConvertCsvActivity"
+                  android:exported="true"
                   android:label="@string/app_name">
                   <!-- 
             <intent-filter>
@@ -69,6 +72,7 @@
                 <action android:name="android.intent.action.VIEW"/>                        
                 <category android:name="android.intent.category.DEFAULT" />
                 <data android:mimeType="text/csv" />
+                <data android:mimeType="text/comma-separated-values" />
             </intent-filter>
         </activity>
         
