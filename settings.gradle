@@ -1,0 +1,2 @@
+include ':app', ':ShoppingListLibrary'
+project(':ShoppingListLibrary').projectDir = new File('../shoppinglist/ShoppingListLibrary')

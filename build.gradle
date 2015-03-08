@@ -1,0 +1,29 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:1.1.0'
+    }
+}
+
+subprojects {
+    repositories {
+        jcenter()
+        mavenCentral()
+        maven {
+            url '../../repo'
+        }
+
+    }
+
+    apply plugin: 'findbugs'
+    findbugs {
+        ignoreFailures = true
+    }
+
+    apply plugin: 'pmd'
+    pmd {
+        ignoreFailures = true
+    }
+}
