@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
       package="org.openintents.convertcsv"
       android:installLocation="auto"
       android:versionName="1.2.0-rc2"
@@ -21,7 +22,8 @@
 	<uses-feature android:name="android.hardware.touchscreen" android:required="false"/>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     
-    <application android:icon="@drawable/ic_menu_convert_csv" android:label="@string/app_name">
+    <application android:icon="@drawable/ic_menu_convert_csv" tools:replace="android:label"
+        android:label="@string/app_name">
         <!-- aTrackDog metadata -->
         <meta-data android:name="com.a0soft.gphone.aTrackDog.testVersion"
            android:value="10" />

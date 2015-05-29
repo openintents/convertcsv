@@ -12,7 +12,7 @@ subprojects {
         jcenter()
         mavenCentral()
         maven {
-            url '../../repo'
+            url "https://github.com/openintents/public-mvn-repo/raw/master/releases"
         }
 
     }
