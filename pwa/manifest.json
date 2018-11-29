@@ -1,0 +1,15 @@
+{
+  "short_name": "OI ConvertCSV",
+  "name" : "OI ConvertCSV",
+  "icons": [
+      {
+        "src": "https://convertcsv.openintents.org/android-chrome-512x512.png",
+        "sizes": "512x512",
+        "type": "image/png"
+      }
+  ],
+  "background_color": "#2196f3",
+  "theme_color": "#2196f3",
+  "start_url": "https://convertcsv.openintents.org/",
+  "display": "standalone"
+}
