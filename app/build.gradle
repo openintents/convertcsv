@@ -21,8 +21,8 @@ android {
 
     defaultConfig {
         applicationId 'org.openintents.convertcsv'
-        versionCode 13
-        versionName '2.0.0-beta1'
+        versionCode 14
+        versionName '2.0.0-beta2'
         minSdkVersion 19
         targetSdkVersion rootProject.ext.targetSdkVersion
     }
