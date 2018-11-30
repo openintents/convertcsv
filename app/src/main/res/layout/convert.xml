@@ -33,19 +33,11 @@
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/signInButton"
+                android:id="@+id/blockstackButton"
                 android:layout_width="0dip"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="@string/org_blockstack_login"
-                />
-
-            <Button
-                android:id="@+id/signOutButton"
-                android:layout_width="0dip"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/signout"
+                android:text="@string/blockstack_settings"
                 />
         </LinearLayout>
 

@@ -123,7 +123,7 @@
 
         <provider
             android:name=".blockstack.ConvertCSVProvider"
-            android:authorities="com.example.android.storageprovider.documents"
+            android:authorities="org.openintents.convertcsv.documents"
             android:exported="true"
             android:grantUriPermissions="true"
             android:permission="android.permission.MANAGE_DOCUMENTS">

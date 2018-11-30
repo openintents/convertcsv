@@ -1,6 +1,7 @@
 package org.openintents.convertcsv.blockstack
 
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.NavUtils
@@ -11,11 +12,15 @@ import android.view.View
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_account.*
 import kotlinx.android.synthetic.main.content_account.*
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.experimental.CommonPool
+import kotlinx.coroutines.experimental.android.UI
+import kotlinx.coroutines.experimental.async
+import kotlinx.coroutines.experimental.launch
 import org.blockstack.android.sdk.BlockstackSession
-import org.jetbrains.anko.coroutines.experimental.*
+import org.blockstack.android.sdk.Executor
+import org.blockstack.android.sdk.PutFileOptions
+import org.jetbrains.anko.coroutines.experimental.Ref
+import org.jetbrains.anko.coroutines.experimental.asReference
 import org.openintents.convertcsv.R
 
 
@@ -35,14 +40,37 @@ class AccountActivity : AppCompatActivity() {
 
         val ref: Ref<AccountActivity> = this.asReference()
 
-        GlobalScope.launch(Dispatchers.IO) {
-            _blockstackSession = BlockstackSession(ref(), defaultConfig)
-            if (intent?.action == Intent.ACTION_VIEW) {
-                handleAuthResponse(intent)
-            }
-            runOnUiThread {
-                onLoaded()
-            }
+        launch(UI) {
+            async(CommonPool) {
+                _blockstackSession = BlockstackSession(ref(), defaultConfig, executor = object: Executor {
+                    override fun onMainThread(function: (Context) -> Unit) {
+                        runOnUiThread {
+                            function(this@AccountActivity)
+                        }
+                    }
+
+                    override fun onNetworkThread(function: suspend () -> Unit) {
+                        try {
+                            async(CommonPool) {
+                                function()
+                            }
+                        } catch (e:Exception) {
+                            Log.d(TAG, "error in network thread", e)
+                        }
+                    }
+
+                    override fun onV8Thread(function: () -> Unit) {
+                        async(CommonPool) {
+                            function()
+                        }
+                    }
+
+                })
+                if (intent?.action == Intent.ACTION_VIEW) {
+                    handleAuthResponse(intent)
+                }
+            }.await()
+            onLoaded()
         }
 
         signInButton.setOnClickListener { _ ->
@@ -52,25 +80,40 @@ class AccountActivity : AppCompatActivity() {
         }
 
         signOutButton.setOnClickListener { _ ->
-            blockstackSession().signUserOut()
-            Log.d(TAG, "signed out!")
-            finish()
+            launch(UI) {
+                async(CommonPool) {
+                    blockstackSession().signUserOut()
+                }.await()
+                Log.d(TAG, "signed out!")
+                finish()
+            }
+        }
+
+        putFileButton.setOnClickListener { _ ->
+            launch(UI) {
+                async(CommonPool) {
+                    blockstackSession().putFile("test.csv", "no data", PutFileOptions(false)) {
+                        Log.d(TAG, "put done " + it.value + " " + it.error)
+                    }
+                }
+            }
         }
     }
 
     private fun onLoaded() {
         signInButton.isEnabled = true
         signOutButton.isEnabled = true
-        GlobalScope.launch(Dispatchers.IO) {
-            val signedIn = blockstackSession().isUserSignedIn()
-            runOnUiThread {
-                if (signedIn) {
-                    signInButton.visibility = View.GONE
-                    signOutButton.visibility = View.VISIBLE
-                } else {
-                    signInButton.visibility = View.VISIBLE
-                    signOutButton.visibility = View.GONE
-                }
+        launch(UI) {
+            val signedIn = async(CommonPool) {
+                blockstackSession().isUserSignedIn()
+            }.await()
+
+            if (signedIn) {
+                signInButton.visibility = View.GONE
+                signOutButton.visibility = View.VISIBLE
+            } else {
+                signInButton.visibility = View.VISIBLE
+                signOutButton.visibility = View.GONE
             }
         }
     }

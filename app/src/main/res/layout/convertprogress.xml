@@ -16,9 +16,24 @@
  -->
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
-    android:layout_width="fill_parent"
-    android:gravity="center_vertical" android:layout_height="fill_parent">
-<TextView android:id="@+id/TextView01" android:layout_height="wrap_content" android:text="@string/converting" android:layout_width="fill_parent" android:gravity="center_horizontal"></TextView>
-<ProgressBar android:layout_height="wrap_content" android:id="@+id/Progress"  style="?android:attr/progressBarStyleHorizontal" android:layout_width="fill_parent" android:progress="0" android:max="10" android:secondaryProgress="0"></ProgressBar>
+              android:layout_width="fill_parent"
+              android:layout_height="fill_parent"
+              android:gravity="center_vertical"
+              android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/TextView01"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:text="@string/converting"/>
+
+    <ProgressBar
+        android:id="@+id/Progress"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:max="10"
+        android:progress="0"
+        android:secondaryProgress="0"/>
 </LinearLayout>

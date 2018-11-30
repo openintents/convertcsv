@@ -122,6 +122,7 @@
     <string name="oi_shopping_permission_write_descr">Allows an application to create new lists and items or modify existing ones.</string>
     <string name="activity_account_title">Blockstack Account</string>
     <string name="signout">Sign out</string>
+    <string name="blockstack_settings">Blockstack Settings</string>
 
     <string-array name="notepad_format">
         <item>MS Outlook Notes</item>

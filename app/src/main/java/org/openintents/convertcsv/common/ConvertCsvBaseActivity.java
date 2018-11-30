@@ -16,6 +16,7 @@
 
 package org.openintents.convertcsv.common;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.ActivityNotFoundException;
@@ -65,7 +66,7 @@ import java.io.UnsupportedEncodingException;
 import java.io.Writer;
 import java.net.URLDecoder;
 
-public class ConvertCsvBaseActivity extends DistributionLibraryActivity {
+public class ConvertCsvBaseActivity extends Activity {
 
     static final public int IMPORT_POLICY_DUPLICATE = 0;
     static final public int IMPORT_POLICY_KEEP = 1;
@@ -143,8 +144,7 @@ public class ConvertCsvBaseActivity extends DistributionLibraryActivity {
         }
     };
 
-    private Button mSignInButton;
-    private Button mSignOutButton;
+    private Button mBlockstackButton;
 
     private static int findString(String[] array, String string) {
         int length = array.length;
@@ -189,18 +189,10 @@ public class ConvertCsvBaseActivity extends DistributionLibraryActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        mDistribution.setFirst(MENU_DISTRIBUTION_START, DIALOG_DISTRIBUTION_START);
-
-        // Check whether EULA has been accepted
-        // or information about new version can be presented.
-        if (mDistribution.showEulaOrNewVersion()) {
-            return;
-        }
-
         // Always create the main layout first, since we need to populate the
         // variables with all the views.
         switchToMainLayout();
-
+        smHasWorkerThread = false;
         if (smHasWorkerThread) {
             switchToConvertLayout();
         }
@@ -224,12 +216,9 @@ public class ConvertCsvBaseActivity extends DistributionLibraryActivity {
         }
         mEditText.setText(filepath);
 
-        mSignInButton = findViewById(R.id.signInButton);
-        mSignOutButton = findViewById(R.id.signOutButton);
+        mBlockstackButton = findViewById(R.id.blockstackButton);
 
-        mSignInButton.setOnClickListener((view) -> startActivity(new Intent(this, AccountActivity.class)));
-
-        mSignOutButton.setOnClickListener((view) -> Log.d(TAG, "signed out!"));
+        mBlockstackButton.setOnClickListener((view) -> startActivity(new Intent(this, AccountActivity.class)));
 
 
         ImageButton buttonFileManager = findViewById(R.id.new_document);
@@ -401,7 +390,7 @@ public class ConvertCsvBaseActivity extends DistributionLibraryActivity {
 
         String fileName = getFilenameAndSavePreferences();
 
-        Log.i(TAG, "Importing...");
+        Log.i(TAG, "Importing..." + fileName);
 
         final Uri file = Uri.parse(fileName);
 
@@ -508,11 +497,7 @@ public class ConvertCsvBaseActivity extends DistributionLibraryActivity {
         new AlertDialog.Builder(this)
                 .setIcon((success) ? android.R.drawable.ic_dialog_info : android.R.drawable.ic_dialog_alert)
                 .setMessage(message)
-                .setPositiveButton(R.string.dialog_ok, new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
-                        finish();
-                    }
-                })
+                .setPositiveButton(R.string.dialog_ok, (dialog, which) -> finish())
                 .show();
     }
 
@@ -624,9 +609,6 @@ public class ConvertCsvBaseActivity extends DistributionLibraryActivity {
         if (!smHasWorkerThread) {
             menu.add(0, MENU_SETTINGS, 0, R.string.menu_settings).setShortcut(
                     '1', 's').setIcon(android.R.drawable.ic_menu_preferences);
-
-            // Add distribution menu items last.
-            mDistribution.onCreateOptionsMenu(menu);
         }
 
         return true;
@@ -722,7 +704,7 @@ public class ConvertCsvBaseActivity extends DistributionLibraryActivity {
 
         intent.addCategory(Intent.CATEGORY_OPENABLE);
 
-        intent.setType("text/plain");
+        intent.setType("text/*");
         intent.putExtra(Intent.EXTRA_TITLE, fileName);
 
         try {
@@ -740,7 +722,7 @@ public class ConvertCsvBaseActivity extends DistributionLibraryActivity {
 
         intent.addCategory(Intent.CATEGORY_OPENABLE);
 
-        intent.setType("text/plain");
+        intent.setType("text/*");
         intent.putExtra(Intent.EXTRA_TITLE, fileName);
 
         try {

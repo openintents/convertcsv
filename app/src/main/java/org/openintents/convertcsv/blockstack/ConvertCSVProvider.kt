@@ -31,16 +31,19 @@ import android.provider.DocumentsContract.Root
 import android.provider.DocumentsProvider
 import android.util.Log
 import android.webkit.MimeTypeMap
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.experimental.CommonPool
+import kotlinx.coroutines.experimental.android.UI
+import kotlinx.coroutines.experimental.async
+import kotlinx.coroutines.experimental.launch
 import org.blockstack.android.sdk.BlockstackSession
 import org.blockstack.android.sdk.Executor
 import org.blockstack.android.sdk.GetFileOptions
+import org.blockstack.android.sdk.PutFileOptions
 import org.openintents.convertcsv.R
 import java.io.File
 import java.io.FileNotFoundException
 import java.io.IOException
+import java.io.InputStream
 import java.util.*
 
 /**
@@ -68,7 +71,7 @@ class ConvertCSVProvider : DocumentsProvider() {
         runOnV8Thread {
             mSession = BlockstackSession(context, defaultConfig, executor = object : Executor {
                 override fun onMainThread(function: (Context) -> Unit) {
-                    GlobalScope.launch(Dispatchers.Main) {
+                    launch(UI) {
                         function.invoke(getContext())
                     }
                 }
@@ -80,7 +83,7 @@ class ConvertCSVProvider : DocumentsProvider() {
                 }
 
                 override fun onNetworkThread(function: suspend () -> Unit) {
-                    GlobalScope.launch(Dispatchers.IO) {
+                    async(CommonPool) {
                         function.invoke()
                     }
                 }
@@ -337,7 +340,7 @@ class ConvertCSVProvider : DocumentsProvider() {
     @Throws(FileNotFoundException::class)
     override fun openDocument(documentId: String, mode: String,
                               signal: CancellationSignal?): ParcelFileDescriptor {
-        Log.v(TAG, "openDocument, mode: $mode")
+        Log.v(TAG, "openDocument $documentId, mode: $mode")
         // It's OK to do network operations in this method to download the document, as long as you
         // periodically check the CancellationSignal.  If you have an extremely large file to
         // transfer from the network, a better solution may be pipes or sockets
@@ -346,30 +349,63 @@ class ConvertCSVProvider : DocumentsProvider() {
         val file = getFileForDocId(documentId)
         val accessMode = ParcelFileDescriptor.parseMode(mode)
 
-        val isWrite = mode.indexOf('w') != -1
-        val options = GetFileOptions(decrypt = false)
-        var getFileDone = false
         val outputDir = context.cacheDir // context being the Activity pointer
         val outputFile = File.createTempFile("gaia", file!!.path, outputDir)
-        runOnV8Thread {
-            mSession?.getFile(file.path, options) {
-                if (it.hasValue) {
-                    it.value
-                    if (it.value is String) {
-                        outputFile.writeText(it.value as String)
-                    } else {
-                        outputFile.writeBytes(it.value as ByteArray)
+
+        val isWrite = mode.indexOf('w') != -1
+        if (isWrite) {
+            val mainHandler = Handler(context!!.mainLooper)
+            return ParcelFileDescriptor.open(outputFile, accessMode, mainHandler) {
+                Log.d(TAG, "closing file " + it?.toString())
+
+                val options = PutFileOptions(encrypt = false)
+                var putFileDone = false
+                val inputStream: InputStream = File(outputFile.path).inputStream()
+                val inputString = inputStream.bufferedReader().use { it.readText() }
+
+                try {
+                    runOnV8Thread {
+                        try {
+                            mSession?.putFile(file.path, inputString, options) {
+                                Log.d(TAG, it.toString())
+                                putFileDone = true
+                            }
+                        } catch (e: Exception) {
+                            Log.d(TAG, "in v8", e)
+                        }
                     }
+
+                    while (!putFileDone) {
+                        Thread.sleep(500)
+                    }
+                } catch (e: Exception) {
+                    Log.d(TAG, "in closing ", e)
                 }
-                getFileDone = true
             }
-        }
+        } else {
+            val options = GetFileOptions(decrypt = false)
+            var getFileDone = false
 
-        while (!getFileDone) {
-            Thread.sleep(500)
-        }
+            runOnV8Thread {
+                mSession?.getFile(file.path, options) {
+                    if (it.hasValue) {
+                        it.value
+                        if (it.value is String) {
+                            outputFile.writeText(it.value as String)
+                        } else {
+                            outputFile.writeBytes(it.value as ByteArray)
+                        }
+                    }
+                    getFileDone = true
+                }
+            }
 
-        return ParcelFileDescriptor.open(outputFile, accessMode)
+            while (!getFileDone) {
+                Thread.sleep(500)
+            }
+
+            return ParcelFileDescriptor.open(outputFile, accessMode)
+        }
     }
     // END_INCLUDE(open_document)
 
@@ -443,7 +479,7 @@ class ConvertCSVProvider : DocumentsProvider() {
             return ROOT
         }
 
-        return "root:" + path
+        return path
     }
 
     /**
@@ -520,14 +556,10 @@ class ConvertCSVProvider : DocumentsProvider() {
         if (docId == ROOT) {
             return target
         }
-        val splitIndex = docId.indexOf(':', 1)
-        if (splitIndex < 0) {
-            throw FileNotFoundException("Missing root for $docId")
-        } else {
-            val path = docId.substring(splitIndex + 1)
-            target = GaiaFile(path, false)
-            return target
-        }
+
+        target = GaiaFile(docId, false)
+        return target
+
     }
 
     companion object {
@@ -590,7 +622,7 @@ class ConvertCSVProvider : DocumentsProvider() {
                     return mime
                 }
             }
-            return "application/octet-stream"
+            return "text/plain"
         }
     }
 }
@@ -600,6 +632,6 @@ data class GaiaFile(
         val isDirectory: Boolean
 ) {
     fun canWrite(): Boolean {
-        return false
+        return true
     }
 }
