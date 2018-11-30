@@ -358,7 +358,7 @@ class ConvertCSVProvider : DocumentsProvider() {
             return ParcelFileDescriptor.open(outputFile, accessMode, mainHandler) {
                 Log.d(TAG, "closing file " + it?.toString())
 
-                val options = PutFileOptions(encrypt = false)
+                val options = PutFileOptions()
                 var putFileDone = false
                 val inputStream: InputStream = File(outputFile.path).inputStream()
                 val inputString = inputStream.bufferedReader().use { it.readText() }
@@ -383,7 +383,7 @@ class ConvertCSVProvider : DocumentsProvider() {
                 }
             }
         } else {
-            val options = GetFileOptions(decrypt = false)
+            val options = GetFileOptions()
             var getFileDone = false
 
             runOnV8Thread {

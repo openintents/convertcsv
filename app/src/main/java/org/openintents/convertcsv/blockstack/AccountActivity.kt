@@ -88,16 +88,6 @@ class AccountActivity : AppCompatActivity() {
                 finish()
             }
         }
-
-        putFileButton.setOnClickListener { _ ->
-            launch(UI) {
-                async(CommonPool) {
-                    blockstackSession().putFile("test.csv", "no data", PutFileOptions(false)) {
-                        Log.d(TAG, "put done " + it.value + " " + it.error)
-                    }
-                }
-            }
-        }
     }
 
     private fun onLoaded() {
