@@ -16,114 +16,160 @@
  -->
 
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-	android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-	>
-<LinearLayout
-    android:orientation="vertical"
-    android:layout_width="fill_parent"
-    android:layout_height="wrap_content"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
     >
-	<TextView  
-		android:layout_width="fill_parent"
-		android:layout_height="wrap_content"
-	    android:text="@string/file_path"
-	    android:layout_marginLeft="20dip"
-	    android:layout_marginTop="20dip"
-	    android:layout_marginBottom="5dip"
-		android:textAppearance="?android:attr/textAppearanceMedium"
-	    />
-    <LinearLayout android:orientation="horizontal"
-	    android:layout_width="fill_parent"
-	    android:layout_height="wrap_content"
-	    android:layout_marginBottom="10dip"
-	    >
-	    <EditText android:id="@+id/file_path"
-	    	android:text="@string/default_filename"
-		    android:layout_width="0dip" 
-		    android:layout_height="wrap_content" 
-		    android:layout_weight="1"
-		    android:inputType="text"
-		/>
-		<ImageButton android:id="@+id/file_manager"
-			android:src="@drawable/ic_launcher_folder_small"
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content" />
-	</LinearLayout>
-	
-	<TextView  
-		android:id="@+id/convert_info"
-		android:layout_width="fill_parent"
-		android:layout_height="wrap_content"
-		android:textAppearance="?android:attr/textAppearanceMedium"
-	    android:layout_marginLeft="20dip"
-	    android:layout_marginTop="20dip"
-	    android:layout_marginBottom="5dip"
-	    />
-	
-	<LinearLayout
-		android:orientation="horizontal"
-		android:layout_width="fill_parent"
-		android:layout_height="wrap_content"
-	    android:layout_marginBottom="10dip">
-		<Button android:id="@+id/file_import"
-	        android:text="@string/file_import"
-	        android:layout_width="0dip"
-	        android:layout_height="wrap_content"
-	        android:layout_weight="1" />
-		<Button android:id="@+id/file_export"
-	        android:text="@string/file_export"
-	        android:layout_width="0dip"
-	        android:layout_height="wrap_content"
-	        android:layout_weight="1" />
-	</LinearLayout>
-	        
-	<TextView  
-		android:id="@+id/csv_format"
-		android:text="@string/csv_file_format"
-		android:layout_width="fill_parent"
-		android:layout_height="wrap_content"
-		android:textAppearance="?android:attr/textAppearanceMedium"
-	    android:layout_marginLeft="20dip"
-	    android:layout_marginTop="20dip"
-	    android:layout_marginBottom="5dip"
-	    />
-	
-    <Spinner android:id="@+id/spinner1"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:drawSelectorOnTop="true"
-        android:prompt="@string/select_csv_file_format"
-	    android:layout_marginBottom="10dip"
-    />
-    <CheckBox android:id="@+id/custom_encoding"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/use_custom_encoding"
-    />
-    <Spinner android:id="@+id/spinner_encoding"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:drawSelectorOnTop="true"
-        android:layout_marginLeft="20dip"
-	    android:prompt="@string/select_encoding"
-	    android:layout_marginBottom="10dip"
-    />
-    
-	<TextView
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:id="@+id/current_import_policy"
-		android:textAppearance="?android:attr/textAppearanceMedium"
-	    android:layout_marginLeft="20dip"
-		android:text="@string/current_import_policy">
-	</TextView>
 
-	<TextView
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:textAppearance="?android:attr/textAppearanceSmall"
-		android:id="@+id/import_policy_detail">
-	</TextView>
-</LinearLayout>
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dip"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/signInButton"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/org_blockstack_login"
+                />
+
+            <Button
+                android:id="@+id/signOutButton"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/signout"
+                />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dip"
+            android:layout_marginTop="20dip"
+            android:layout_marginBottom="5dip"
+            android:text="@string/file_path"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            />
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dip"
+            android:orientation="horizontal"
+            >
+
+            <TextView
+                android:id="@+id/file_path"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:inputType="text"
+                android:text="@string/default_filename"
+                />
+
+            <ImageButton
+                android:id="@+id/new_document"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_launcher_folder_small"/>
+
+            <ImageButton
+                android:id="@+id/open_document"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_launcher_folder_small"/>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/convert_info"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dip"
+            android:layout_marginTop="20dip"
+            android:layout_marginBottom="5dip"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            />
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dip"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/file_import"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/file_import"/>
+
+            <Button
+                android:id="@+id/file_export"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/file_export"/>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/csv_format"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dip"
+            android:layout_marginTop="20dip"
+            android:layout_marginBottom="5dip"
+            android:text="@string/csv_file_format"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            />
+
+        <Spinner
+            android:id="@+id/spinner1"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dip"
+            android:drawSelectorOnTop="true"
+            android:prompt="@string/select_csv_file_format"
+            />
+
+        <CheckBox
+            android:id="@+id/custom_encoding"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/use_custom_encoding"
+            />
+
+        <Spinner
+            android:id="@+id/spinner_encoding"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dip"
+            android:layout_marginBottom="10dip"
+            android:drawSelectorOnTop="true"
+            android:prompt="@string/select_encoding"
+            />
+
+        <TextView
+            android:id="@+id/current_import_policy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dip"
+            android:text="@string/current_import_policy"
+            android:textAppearance="?android:attr/textAppearanceMedium">
+        </TextView>
+
+        <TextView
+            android:id="@+id/import_policy_detail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall">
+        </TextView>
+    </LinearLayout>
 </ScrollView>
