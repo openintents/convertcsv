@@ -74,8 +74,13 @@ class AccountActivity : AppCompatActivity() {
         }
 
         signInButton.setOnClickListener { _ ->
-            blockstackSession().redirectUserToSignIn { _ ->
-                Log.d(TAG, "signed in error!")
+            launch(UI) {
+                async(CommonPool) {
+                    blockstackSession().signUserOut()
+                    blockstackSession().redirectUserToSignIn { _ ->
+                        Log.d(TAG, "signed in redirect")
+                    }
+                }
             }
         }
 
@@ -109,8 +114,12 @@ class AccountActivity : AppCompatActivity() {
     }
 
     private fun onSignIn() {
-        blockstackSession().loadUserData()
-        finish()
+        launch(UI) {
+            async(CommonPool) {
+                blockstackSession().loadUserData()
+            }.await()
+            finish()
+        }
     }
 
     override fun onNewIntent(intent: Intent?) {

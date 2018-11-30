@@ -69,12 +69,14 @@
 
             <ImageButton
                 android:id="@+id/new_document"
+                android:contentDescription="@string/new_file"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_launcher_folder_small"/>
+                android:src="@drawable/ic_launcher_folder_new_small"/>
 
             <ImageButton
                 android:id="@+id/open_document"
+                android:contentDescription="@string/choose_file"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_launcher_folder_small"/>

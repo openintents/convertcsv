@@ -123,6 +123,9 @@
     <string name="activity_account_title">Blockstack Account</string>
     <string name="signout">Sign out</string>
     <string name="blockstack_settings">Blockstack Settings</string>
+    <string name="new_file">New file</string>
+    <string name="choose_file">Choose file</string>
+    <string name="please_wait">Please wait until the sign in/signout button is enabled.</string>
 
     <string-array name="notepad_format">
         <item>MS Outlook Notes</item>
