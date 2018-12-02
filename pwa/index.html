@@ -1,26 +1,28 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <meta name="description" content="ConvertCSV app with Blockstack"/>
-    <meta name="theme-color" content="#2196f3"/>
-    <meta name="msapplication-TileColor" content="#da532c"/>
-    <meta property="og:url" content=""/>
-    <meta property="og:type" content="website"/>
-    <meta property="og:title" content="OI ConvertCSV"/>
-    <meta property="og:description" content="ConvertCSV app with Blockstack"/>
-    <meta property="og:image" content="/android-chrome-512x512.png"/>
-    <link rel="canonical" href=""/>
-    <link rel="shortcut icon" href="/favicon.ico"/>
-    <link rel="manifest" href="/manifest.json"/>
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"/>
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"/>
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"/>
-    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"/>
-    <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons"/>
-    <link rel="stylesheet"
-          href="//fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en"/>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="ConvertCSV app with Blockstack" />
+    <meta name="theme-color" content="#2196f3" />
+    <meta name="msapplication-TileColor" content="#da532c" />
+    <meta property="og:url" content="" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="OI ConvertCSV" />
+    <meta property="og:description" content="ConvertCSV app with Blockstack" />
+    <meta property="og:image" content="/android-chrome-512x512.png" />
+    <link rel="canonical" href="" />
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <link rel="manifest" href="/manifest.json" />
+    <link
+      rel="stylesheet"
+      href="//fonts.googleapis.com/icon?family=Material+Icons"
+    />
+    <link
+      rel="stylesheet"
+      href="//fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en"
+    />
+    <link rel="stylesheet" href="./styles.css" />
     <title>OI ConvertCSV</title>
     <script type="application/ld+json">
       {
@@ -31,27 +33,149 @@
         "applicationCategory": "Productivity",
         "image": "https://convertcsv.openintents.org/android-chrome-512x512.png"
       }
-
     </script>
-</head>
-<body>
-<div id="root" align="center">
-    <div>
-        <div><img src="/android-chrome-512x512.png" width="100vw" height="100vh"></div>
-        <h1 class="MuiTypography-root-143 MuiTypography-headline-148">OI ConvertCSV - Beta</h1>
-        <h2 class="MuiTypography-root-143 MuiTypography-headline-148">Backup and transfer your shopping lists and notes to new Android devices.</h2>
-        <p class="MuiTypography-root-143 MuiTypography-body1-152">Your data never get out of your
-            control.</p>
-        <p class="MuiTypography-root-143 MuiTypography-body1-152">Works with <a
-                href="https://blockstack.org"><b>Blockstack</b></a>.</p>
-        <p class="MuiTypography-root-143 MuiTypography-body1-152">Requires <a
-                href="https://openintents.org/shopping"><b>OI Shoppinglist</b></a> or <a
-                href="https://openintents.org/notes"><b>OI Notes</b></a>.</p>
-        <div><a
-                href="https://play.google.com/apps/testing/org.openintents.convertcsv"><img
-                alt="Get it on Google Play"
-                src="https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png"
-                height="64vh"></a></div>
+  </head>
+  <body>
+    <div class="container" id="benefits" data-aos="fade-up">
+      <div>
+        <img src="./android-chrome-512x512.png" width="100vw" height="100vh" />
+      </div>
+      <h3>OI ConvertCSV - Beta</h3>
+      <p class="lead">Backup your notes and shopping lists on Android.</p>
+      <p class="lead">
+        Your data never get out of your control.<br />
+        Works with <a href="https://blockstack.org"><b>Blockstack</b></a> (and
+        other storage providers if you really need).
+      </p>
+      <p class="lead">
+        Requires <a href="https://openintents.org/notes"><b>OI Notes</b></a> or
+        <a href="https://openintents.org/shopping"><b>OI Shoppinglist</b></a
+        >.
+      </p>
+
+      <div class="grid">
+        <div class="card">
+          <div class="image"><img src="./images/01_notes.png" /></div>
+          <div class="text">
+            <h5>In Your App</h5>
+            <p>Integrates into your usual OpenIntents apps with a menu item.</p>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="image"><img src="./images/02_convert.png" /></div>
+          <div class="text">
+            <h5>Import & Export</h5>
+            <p>
+              Many settings available to meet your requirements across devices.
+            </p>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="image"><img src="./images/03_saf.png" /></div>
+          <div class="text">
+            <h5>Part of Your Phone</h5>
+            <p>Your data becomes available in the system UI for storage.</p>
+          </div>
+        </div>
+      </div>
+      <!-- Grid ends -->
     </div>
-</div>
+    <div id="cta">
+      <div class="content">
+        <h6>OI ConvertCSV is Free and Open Source</h6>
+        <h2>Start Using it Now</h2>
+        <p class="lead">
+          This is the first (of hopefully more) OpenIntents app that received
+          permission to access the internet due to the advances in decentralized
+          technologies by Blockstack. Please read <a href="http://www.openintents.org/blog/2018/11/30/giving-internet-permission.html">our blog article</a> why this is a big deal
+          for OpenIntents.
+        </p>
+
+        <div class="app-badges">
+          <div class="badge">
+            <a
+              href="https://play.google.com/apps/testing/org.openintents.convertcsv"
+              ><img
+                alt="Get it on Google Play"
+                src="./images/play.png"
+                height="64vh"
+            /></a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer class="container" id="footer">
+      <div class="container">
+        <div class="about">
+          <h4>OpenIntents Softwares</h4>
+          <p>
+            OI ConvertCSV is an open source project developed by Openintents and
+            it’s collaborator. The source code is available on github
+            <a href="https://github.com/openintents/convertcsv"
+              ><strong>here</strong></a
+            >.
+          </p>
+        </div>
+        <div class="contact">
+          <h6>CONTACTS</h6>
+          <div class="meta">
+            <ul>
+              <li>Phone:</li>
+              <li>E-mail:</li>
+              <li>Address:</li>
+            </ul>
+          </div>
+          <div class="info">
+            <ul>
+              <li><a href="tel:+49 30 60982220">+49 30 60982220</a></li>
+              <li>
+                <a href="mailto:info@openintents.biz" style="color: #B9B9B9;"
+                  >info@openintents.biz</a
+                >
+              </li>
+              <li>
+                <a
+                  href="https://www.google.com/maps/place/OpenIntents/@52.50441,13.2907612,17z/data=!3m1!4b1!4m5!3m4!1s0x47a850da58e9f951:0x408c1a9eda3d344c!8m2!3d52.50441!4d13.29295"
+                  >OpenIntents UG (haftungsbeschränkt), Suarezstr 41, 14057
+                  Berlin, Germany</a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="social">
+          <h6>SOCIALS</h6>
+
+          <ul class="social-links">
+            <li>
+              <a href="https://explorer.blockstack.org/name/openintents.id"
+                ><img src="./images/blockstack.svg"
+              /></a>
+            </li>
+            <li>
+              <a href="https://github.com/openintents"
+                ><img src="./images/github.svg"
+              /></a>
+            </li>            
+            <li>
+              <a href="https://twitter.com/openintents"
+                ><img src="./images/twitter.svg"
+              /></a>
+            </li>
+            <li>
+              <a href="https://www.linkedin.com/company/openintents.org"
+                ><img src="./images/linkedin.svg"
+              /></a>
+            </li>
+          </ul>
+          <a href="http://www.openintents.org/privacy-for-apps" class="privacy"
+            >Privacy Policy</a
+          >
+        </div>
+      </div>
+    </footer>
+  </body>
 </html>
