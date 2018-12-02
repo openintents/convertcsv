@@ -16,16 +16,18 @@
 
 package org.openintents.convertcsv.notepad;
 
-import java.io.IOException;
-import java.io.Reader;
-import java.io.Writer;
+import android.content.pm.PackageManager;
+import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 
 import org.openintents.convertcsv.PreferenceActivity;
 import org.openintents.convertcsv.R;
 import org.openintents.convertcsv.common.ConvertCsvBaseActivity;
 import org.openintents.convertcsv.common.WrongFormatException;
 
-import android.os.Bundle;
+import java.io.IOException;
+import java.io.Reader;
+import java.io.Writer;
 
 public class ConvertCsvActivity extends ConvertCsvBaseActivity {
 	
@@ -78,5 +80,10 @@ public class ConvertCsvActivity extends ConvertCsvBaseActivity {
 	}
 
 
-	
+	@Override
+	protected String getWritePermission() {
+        return "org.openintents.notepad.WRITE_PERMISSION";
+	}
+
+
 }

@@ -25,6 +25,7 @@ import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
@@ -33,6 +34,7 @@ import android.os.Message;
 import android.os.ParcelFileDescriptor;
 import android.preference.PreferenceManager;
 import android.provider.OpenableColumns;
+import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.util.Xml.Encoding;
 import android.view.LayoutInflater;
@@ -52,7 +54,6 @@ import android.widget.TextView;
 import org.openintents.convertcsv.PreferenceActivity;
 import org.openintents.convertcsv.R;
 import org.openintents.convertcsv.blockstack.AccountActivity;
-import org.openintents.distribution.DistributionLibraryActivity;
 import org.openintents.distribution.DownloadOIAppDialog;
 
 import java.io.FileNotFoundException;
@@ -82,6 +83,7 @@ public class ConvertCsvBaseActivity extends Activity {
     protected static final int DIALOG_ID_WARN_OVERWRITE = 1;
     protected static final int DIALOG_ID_NO_FILE_MANAGER_AVAILABLE = 2;
     protected static final int DIALOG_ID_WARN_RESTORE_POLICY = 3;
+    protected static final int DIALOG_ID_PERMISSIONS = 4;
     protected static final int DIALOG_DISTRIBUTION_START = 100; // MUST BE LAST
     protected static final int REQUEST_CODE_PICK_FILE = 1;
     private final static String TAG = "ConvertCsvBaseActivity";
@@ -372,6 +374,11 @@ public class ConvertCsvBaseActivity extends Activity {
     }
 
     public void startImport() {
+        if (!hasWritePermission()) {
+            showDialog(DIALOG_ID_PERMISSIONS);
+            return;
+        }
+
         int importPolicy = getValidatedImportPolicy();
 
         if (importPolicy == IMPORT_POLICY_RESTORE) {
@@ -379,6 +386,15 @@ public class ConvertCsvBaseActivity extends Activity {
         } else {
             startImportPostCheck();
         }
+    }
+
+    private boolean hasWritePermission() {
+        return ContextCompat.checkSelfPermission(this, getWritePermission())
+                == PackageManager.PERMISSION_GRANTED;
+    }
+
+    protected String getWritePermission() {
+        return null;
     }
 
     public void startImportPostCheck() {
@@ -678,6 +694,14 @@ public class ConvertCsvBaseActivity extends Activity {
             case DIALOG_ID_NO_FILE_MANAGER_AVAILABLE:
                 return new DownloadOIAppDialog(this,
                         DownloadOIAppDialog.OI_FILEMANAGER);
+            case DIALOG_ID_PERMISSIONS:
+                return new AlertDialog.Builder(this)
+                        .setTitle(R.string.warn_install_order_title)
+                        .setMessage(R.string.warn_install_order)
+                        .setPositiveButton(android.R.string.ok, (dialog, which) -> {
+                            dialog.dismiss();
+                        })
+                        .create();
         }
         return super.onCreateDialog(id);
     }

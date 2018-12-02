@@ -106,6 +106,7 @@
         <activity
             android:name=".blockstack.AccountActivity"
             android:label="@string/activity_account_title"
+            android:launchMode="singleTask"
             android:parentActivityName=".InfoActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
@@ -138,4 +139,4 @@
     <uses-permission android:name="org.openintents.shopping.READ_PERMISSION"/>
     <uses-permission android:name="org.openintents.shopping.WRITE_PERMISSION"/>
     <uses-permission android:name="android.permission.INTERNET"/>
-</manifest> 
+</manifest>

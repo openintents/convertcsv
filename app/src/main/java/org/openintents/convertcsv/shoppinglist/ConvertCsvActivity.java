@@ -18,10 +18,12 @@ package org.openintents.convertcsv.shoppinglist;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.v4.content.ContextCompat;
 import android.util.Xml.Encoding;
 import android.view.View;
 import android.widget.AdapterView;
@@ -207,5 +209,10 @@ public class ConvertCsvActivity extends ConvertCsvBaseActivity {
 			c.close();
 		}
 		return listname;
+    }
+
+    @Override
+    protected String getWritePermission() {
+        return "org.openintents.shoppinglist.WRITE_PERMISSION";
     }
 }

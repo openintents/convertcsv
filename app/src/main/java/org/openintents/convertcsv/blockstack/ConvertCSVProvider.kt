@@ -87,7 +87,7 @@ class ConvertCSVProvider : DocumentsProvider() {
                         function.invoke()
                     }
                 }
-            })
+            }, sessionStore = getSessionStore(context))
         }
         mBaseDir = GaiaFile("", true)
 
@@ -113,6 +113,7 @@ class ConvertCSVProvider : DocumentsProvider() {
         var title: String? = null
         runOnV8Thread {
             isUserLoggedIn = mSession?.isUserSignedIn() ?: false
+            Log.d(TAG, "signed in " + isUserLoggedIn + " " + mSession)
             if (isUserLoggedIn) {
                 title = mSession?.loadUserData()?.profile?.name
                 if (title == null) {
