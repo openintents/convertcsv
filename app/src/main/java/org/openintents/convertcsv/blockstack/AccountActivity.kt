@@ -33,8 +33,7 @@ class AccountActivity : AppCompatActivity() {
         setSupportActionBar(toolbar)
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
 
-        signInButton.isEnabled = false
-        signOutButton.isEnabled = false
+        setLoadingUI(true)
 
         val ref: Ref<AccountActivity> = this.asReference()
 
@@ -99,8 +98,8 @@ class AccountActivity : AppCompatActivity() {
             val signedIn = runOnV8Thread {
                 blockstackSession().isUserSignedIn()
             }.await()
-            signInButton.isEnabled = true
-            signOutButton.isEnabled = true
+            setLoadingUI(false)
+
             if (signedIn) {
                 signInButton.visibility = View.GONE
                 signOutButton.visibility = View.VISIBLE
@@ -141,6 +140,7 @@ class AccountActivity : AppCompatActivity() {
         val authResponse = intent?.data?.getQueryParameter("authResponse")
         if (authResponse != null) {
             Log.d(TAG, "authResponse: ${authResponse}")
+            setLoadingUI(true)
             runOnV8Thread {
                 try {
                     Log.d(TAG, "before signed in!")
@@ -159,6 +159,18 @@ class AccountActivity : AppCompatActivity() {
                     Log.d(TAG, "signed in error", e)
                 }
             }
+        }
+    }
+
+    private fun setLoadingUI(loading: Boolean) {
+        if (loading) {
+            signInButton.isEnabled = false
+            signOutButton.isEnabled = false
+            accountDescription.visibility = View.VISIBLE
+        } else {
+            signInButton.isEnabled = true
+            signOutButton.isEnabled = true
+            accountDescription.visibility = View.INVISIBLE
         }
     }
 

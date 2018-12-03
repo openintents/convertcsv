@@ -271,17 +271,6 @@ class ConvertCSVProvider : DocumentsProvider() {
     }
     // END_INCLUDE(query_search_documents)
 
-    // BEGIN_INCLUDE(open_document_thumbnail)
-    @Throws(FileNotFoundException::class)
-    override fun openDocumentThumbnail(documentId: String, sizeHint: Point,
-                                       signal: CancellationSignal): AssetFileDescriptor {
-        Log.v(TAG, "openDocumentThumbnail")
-
-        val file = getFileForDocId(documentId)
-        val pfd = ParcelFileDescriptor.open(File("/"), ParcelFileDescriptor.MODE_READ_ONLY)
-        return AssetFileDescriptor(pfd, 0, AssetFileDescriptor.UNKNOWN_LENGTH)
-    }
-    // END_INCLUDE(open_document_thumbnail)
 
     // BEGIN_INCLUDE(query_document)
     @Throws(FileNotFoundException::class)
@@ -386,16 +375,18 @@ class ConvertCSVProvider : DocumentsProvider() {
         } else {
             val options = GetFileOptions()
             var getFileDone = false
-
+            var fileNotFound = false
             runOnV8Thread {
                 mSession?.getFile(file.path, options) {
+                    Log.d(TAG, "getFile " + it.value)
                     if (it.hasValue) {
-                        it.value
                         if (it.value is String) {
                             outputFile.writeText(it.value as String)
                         } else {
                             outputFile.writeBytes(it.value as ByteArray)
                         }
+                    } else {
+                        fileNotFound = true
                     }
                     getFileDone = true
                 }
@@ -403,6 +394,10 @@ class ConvertCSVProvider : DocumentsProvider() {
 
             while (!getFileDone) {
                 Thread.sleep(500)
+            }
+
+            if (fileNotFound) {
+                throw FileNotFoundException(file.path)
             }
 
             return ParcelFileDescriptor.open(outputFile, accessMode)
@@ -416,8 +411,7 @@ class ConvertCSVProvider : DocumentsProvider() {
     override fun createDocument(documentId: String, mimeType: String, displayName: String): String {
         Log.v(TAG, "createDocument")
 
-        val parent = getFileForDocId(documentId)
-        val file = GaiaFile(parent!!.path + "/" + displayName, false)
+        val file = GaiaFile(displayName, false)
         try {
             // TODO create file
         } catch (e: IOException) {
@@ -528,7 +522,7 @@ class ConvertCSVProvider : DocumentsProvider() {
 
         if (mimeType.startsWith("image/")) {
             // Allow the image to be represented by a thumbnail rather than an icon
-            flags = flags or Document.FLAG_SUPPORTS_THUMBNAIL
+            flags = flags // TODO support Document.FLAG_SUPPORTS_THUMBNAIL
         }
 
         val row = result.newRow()
@@ -553,12 +547,11 @@ class ConvertCSVProvider : DocumentsProvider() {
      */
     @Throws(FileNotFoundException::class)
     private fun getFileForDocId(docId: String): GaiaFile? {
-        var target = mBaseDir
         if (docId == ROOT) {
-            return target
+            return mBaseDir
         }
 
-        target = GaiaFile(docId, false)
+        val target = GaiaFile(docId, false)
         return target
 
     }
