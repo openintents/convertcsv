@@ -16,7 +16,6 @@
 
 package org.openintents.convertcsv.common;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.ActivityNotFoundException;
@@ -25,6 +24,7 @@ import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
@@ -33,6 +33,9 @@ import android.os.Message;
 import android.os.ParcelFileDescriptor;
 import android.preference.PreferenceManager;
 import android.provider.OpenableColumns;
+import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.util.Log;
 import android.util.Xml.Encoding;
 import android.view.LayoutInflater;
@@ -52,7 +55,6 @@ import android.widget.TextView;
 import org.openintents.convertcsv.PreferenceActivity;
 import org.openintents.convertcsv.R;
 import org.openintents.convertcsv.blockstack.AccountActivity;
-import org.openintents.distribution.DistributionLibraryActivity;
 import org.openintents.distribution.DownloadOIAppDialog;
 
 import java.io.FileNotFoundException;
@@ -62,11 +64,9 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.io.Reader;
-import java.io.UnsupportedEncodingException;
 import java.io.Writer;
-import java.net.URLDecoder;
 
-public class ConvertCsvBaseActivity extends Activity {
+public class ConvertCsvBaseActivity extends AppCompatActivity {
 
     static final public int IMPORT_POLICY_DUPLICATE = 0;
     static final public int IMPORT_POLICY_KEEP = 1;
@@ -78,10 +78,12 @@ public class ConvertCsvBaseActivity extends Activity {
     static final public int MESSAGE_ERROR = 3;            // An error occured, arg1 = string ID of error
     static final public int MESSAGE_SET_MAX_PROGRESS = 4;    // Set maximum progress int, arg1 = new max value
     protected static final int MENU_SETTINGS = Menu.FIRST + 1;
+    protected static final int MENU_CANCEL = Menu.FIRST + 2;
     protected static final int MENU_DISTRIBUTION_START = Menu.FIRST + 100; // MUST BE LAST
     protected static final int DIALOG_ID_WARN_OVERWRITE = 1;
     protected static final int DIALOG_ID_NO_FILE_MANAGER_AVAILABLE = 2;
     protected static final int DIALOG_ID_WARN_RESTORE_POLICY = 3;
+    protected static final int DIALOG_ID_PERMISSIONS = 4;
     protected static final int DIALOG_DISTRIBUTION_START = 100; // MUST BE LAST
     protected static final int REQUEST_CODE_PICK_FILE = 1;
     private final static String TAG = "ConvertCsvBaseActivity";
@@ -93,7 +95,8 @@ public class ConvertCsvBaseActivity extends Activity {
     static boolean smHasWorkerThread;
     // Max value for the progress bar.
     static int smProgressMax;
-    protected TextView mEditText;
+    protected TextView mFilePathView;
+    protected TextView mFileNameView;
     protected TextView mConvertInfo;
     protected Spinner mSpinner;
     protected String PREFERENCE_FILENAME;
@@ -192,7 +195,6 @@ public class ConvertCsvBaseActivity extends Activity {
         // Always create the main layout first, since we need to populate the
         // variables with all the views.
         switchToMainLayout();
-        smHasWorkerThread = false;
         if (smHasWorkerThread) {
             switchToConvertLayout();
         }
@@ -206,15 +208,17 @@ public class ConvertCsvBaseActivity extends Activity {
 
         setPreferencesUsed();
 
-        mEditText = findViewById(R.id.file_path);
+        mFilePathView = findViewById(R.id.file_path);
+        mFileNameView = findViewById(R.id.file_name);
 
         SharedPreferences pm = PreferenceManager.getDefaultSharedPreferences(this);
         String filepath = pm.getString(PREFERENCE_FILENAME, DEFAULT_FILENAME);
-        if (filepath.equals(DEFAULT_FILENAME)) {
-            // prepend SD path
-            filepath = getSdCardFilename(DEFAULT_FILENAME);
+
+        if (TextUtils.isEmpty(filepath)) {
+            setFileUriUnknown();
+        } else {
+            setFileUri(Uri.parse(filepath));
         }
-        mEditText.setText(filepath);
 
         mBlockstackButton = findViewById(R.id.blockstackButton);
 
@@ -278,12 +282,11 @@ public class ConvertCsvBaseActivity extends Activity {
         if (type != null && type.equals("text/csv")) {
             // Someone wants to import a CSV document through the file manager.
             // Set the path accordingly:
-            String path = getIntent().getDataString();
+            Uri path = getIntent().getData();
             if (path != null) {
-                if (path.startsWith("file://")) {
-                    path = path.substring(7);
-                }
-                mEditText.setText(path);
+                setFileUri(path);
+            } else {
+                setFileUriUnknown();
             }
         }
     }
@@ -372,6 +375,11 @@ public class ConvertCsvBaseActivity extends Activity {
     }
 
     public void startImport() {
+        if (!hasWritePermission()) {
+            showDialog(DIALOG_ID_PERMISSIONS);
+            return;
+        }
+
         int importPolicy = getValidatedImportPolicy();
 
         if (importPolicy == IMPORT_POLICY_RESTORE) {
@@ -379,6 +387,15 @@ public class ConvertCsvBaseActivity extends Activity {
         } else {
             startImportPostCheck();
         }
+    }
+
+    private boolean hasWritePermission() {
+        return ContextCompat.checkSelfPermission(this, getWritePermission())
+                == PackageManager.PERMISSION_GRANTED;
+    }
+
+    protected String getWritePermission() {
+        return null;
     }
 
     public void startImportPostCheck() {
@@ -399,6 +416,7 @@ public class ConvertCsvBaseActivity extends Activity {
         // what kind of trouble he's getting himself into.
         switchToConvertLayout();
         smHasWorkerThread = true;
+        supportInvalidateOptionsMenu();
 
         new Thread() {
             public void run() {
@@ -439,27 +457,19 @@ public class ConvertCsvBaseActivity extends Activity {
                 }
 
                 smHasWorkerThread = false;
+                supportInvalidateOptionsMenu();
             }
         }.start();
 
     }
 
     public int getDocumentSize(Uri uri) {
-
-        // The query, since it only applies to a single document, will only return
-        // one row. There's no need to filter, sort, or select fields, since we want
-        // all fields for one document.
         Cursor cursor = getContentResolver()
                 .query(uri, null, null, null, null, null);
 
         int size = -1;
         try {
-            // moveToFirst() returns false if the cursor has 0 rows.  Very handy for
-            // "if there's anything to look at, look at it" conditionals.
             if (cursor != null && cursor.moveToFirst()) {
-
-                // Note it's called "Display Name".  This is
-                // provider-specific, and might not necessarily be the file name.
                 String displayName = cursor.getString(
                         cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME));
                 Log.i(TAG, "Display Name: " + displayName);
@@ -475,6 +485,24 @@ public class ConvertCsvBaseActivity extends Activity {
             }
         }
         return size;
+    }
+
+    public String getDocumentName(Uri uri) {
+        Cursor cursor = getContentResolver()
+                .query(uri, null, null, null, null, null);
+
+        String displayName = uri.getLastPathSegment();
+        try {
+            if (cursor != null && cursor.moveToFirst()) {
+                displayName = cursor.getString(
+                        cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME));
+            }
+        } finally {
+            if (cursor != null) {
+                cursor.close();
+            }
+        }
+        return displayName;
     }
 
     protected Encoding getCurrentEncoding() {
@@ -577,7 +605,7 @@ public class ConvertCsvBaseActivity extends Activity {
      */
     public String getFilenameAndSavePreferences() {
 
-        String fileName = mEditText.getText().toString();
+        String fileName = mFilePathView.getText().toString();
 
         SharedPreferences prefs = PreferenceManager
                 .getDefaultSharedPreferences(this);
@@ -609,6 +637,9 @@ public class ConvertCsvBaseActivity extends Activity {
         if (!smHasWorkerThread) {
             menu.add(0, MENU_SETTINGS, 0, R.string.menu_settings).setShortcut(
                     '1', 's').setIcon(android.R.drawable.ic_menu_preferences);
+        } else {
+            menu.add(0, MENU_CANCEL, 0, R.string.menu_cancel).setShortcut(
+                    '1', 'c').setIcon(android.R.drawable.ic_menu_close_clear_cancel);
         }
 
         return true;
@@ -627,6 +658,11 @@ public class ConvertCsvBaseActivity extends Activity {
             case MENU_SETTINGS:
                 Intent intent = new Intent(this, PreferenceActivity.class);
                 startActivity(intent);
+                break;
+            case MENU_CANCEL:
+                smHasWorkerThread = false;
+                finish();
+                break;
         }
         return super.onOptionsItemSelected(item);
     }
@@ -678,6 +714,14 @@ public class ConvertCsvBaseActivity extends Activity {
             case DIALOG_ID_NO_FILE_MANAGER_AVAILABLE:
                 return new DownloadOIAppDialog(this,
                         DownloadOIAppDialog.OI_FILEMANAGER);
+            case DIALOG_ID_PERMISSIONS:
+                return new AlertDialog.Builder(this)
+                        .setTitle(R.string.warn_install_order_title)
+                        .setMessage(R.string.warn_install_order)
+                        .setPositiveButton(android.R.string.ok, (dialog, which) -> {
+                            dialog.dismiss();
+                        })
+                        .create();
         }
         return super.onCreateDialog(id);
     }
@@ -698,12 +742,10 @@ public class ConvertCsvBaseActivity extends Activity {
 
     private void openFileManagerForNewDocument() {
 
-        String fileName = mEditText.getText().toString();
+        String fileName = mFileNameView.getText().toString();
 
         Intent intent = new Intent(Intent.ACTION_CREATE_DOCUMENT);
-
         intent.addCategory(Intent.CATEGORY_OPENABLE);
-
         intent.setType("text/*");
         intent.putExtra(Intent.EXTRA_TITLE, fileName);
 
@@ -716,7 +758,7 @@ public class ConvertCsvBaseActivity extends Activity {
 
     private void openFileManagerForChoosingDocument() {
 
-        String fileName = mEditText.getText().toString();
+        String fileName = mFilePathView.getText().toString();
 
         Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
 
@@ -759,25 +801,25 @@ public class ConvertCsvBaseActivity extends Activity {
         switch (requestCode) {
             case REQUEST_CODE_PICK_FILE:
                 if (resultCode == RESULT_OK && data != null) {
-                    // obtain the filename
-                    String filename = data.getDataString();
-                    // remove url encoding from filename
-                    try {
-                        filename = URLDecoder.decode(filename, "UTF-8");
-                    } catch (UnsupportedEncodingException e) {
-                        e.printStackTrace();
-                    }
-
-                    if (filename != null) {
-                        if (filename.startsWith("file://")) {
-                            filename = filename.substring(7);
-                        }
-
-                        mEditText.setText(filename);
+                    Uri documentUri = data.getData();
+                    if (documentUri != null) {
+                        setFileUri(documentUri);
+                    } else {
+                        setFileUriUnknown();
                     }
 
                 }
                 break;
         }
+    }
+
+    private void setFileUriUnknown() {
+        mFileNameView.setText(getString(R.string.unknown_document));
+        mFilePathView.setText("");
+    }
+
+    private void setFileUri(Uri documentUri) {
+        mFileNameView.setText(getDocumentName(documentUri));
+        mFilePathView.setText(documentUri.toString());
     }
 }

@@ -123,6 +123,13 @@
     <string name="activity_account_title">Blockstack Account</string>
     <string name="signout">Sign out</string>
     <string name="blockstack_settings">Blockstack Settings</string>
+    <string name="new_file">New file</string>
+    <string name="choose_file">Choose file</string>
+    <string name="please_wait">Please wait until the sign in/signout button is enabled. Checking Blockstack status...</string>
+    <string name="warn_install_order_title">Reinstallation required</string>
+    <string name="warn_install_order">Android\'s permission system requires that OI ConvertCSV is installed after OI Notes and OI Shopping List. Please uninstall OI ConvertCSV and reinstall OI ConvertCSV!</string>
+    <string name="unknown_document">Unknown</string>
+    <string name="menu_cancel">Cancel</string>
 
     <string-array name="notepad_format">
         <item>MS Outlook Notes</item>
